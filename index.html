@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PawFinder – Helping Stray Animals</title>
+  <title>PawFinder – Helping Stray Animals | PawFinder-adopt/donate.com</title>
+  <!-- Include a meta description that mentions the unique search phrase. -->
+  <meta name="description" content="Join PawFinder in rescuing stray dogs and cats and connecting them with loving homes. Find us by searching PawFinder-adopt/donate.com.">
   <style>
     /* Global styles */
     body {
@@ -178,7 +180,10 @@
         <li><a href="#why">Why It Matters</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#get-involved">Get Involved</a></li>
-        <li><a href="donate.html">Donate</a></li>
+        <!-- Change the donate navigation text to reflect the requested URL name. The link still points
+             to the donate.html page in our project, but the text shown to users uses the
+             PawFinder‑adopt/donate.com wording. -->
+        <li><a href="donate.html">PawFinder-adopt/donate.com</a></li>
       </ul>
     </nav>
   </header>
@@ -189,6 +194,11 @@
       <h2>Every pet deserves a loving home</h2>
       <p>Join us in rescuing stray dogs and cats and connecting them with caring people and shelters.</p>
       <a class="cta-button" href="#get-involved">Get Involved</a>
+      <!-- Inform visitors about how to find the site via search. This text makes it clear that
+           the app can be found by searching for the unique phrase provided by the user. -->
+      <p style="margin-top:1rem;font-size:0.9rem;color:#333;">
+        Looking for our website? Type <strong>PawFinder-adopt/donate.com</strong> in your favorite search engine to find us quickly.
+      </p>
     </div>
   </div>
 
@@ -251,6 +261,13 @@
         <input type="text" id="location" name="location" placeholder="Enter address or landmark" required>
         <label for="details">Details</label>
         <textarea id="details" name="details" placeholder="Describe the animal's condition and any other details" rows="4" required></textarea>
+        <label for="report-center">Choose Center</label>
+        <select id="report-center" name="report-center" required>
+          <option value="">Select Center</option>
+          <option value="Austin Pets Alive">Austin Pets Alive</option>
+          <option value="Austin Animal Services">Austin Animal Services</option>
+          <option value="Austin Humane Society">Austin Humane Society</option>
+        </select>
         <button type="submit">Submit Report</button>
       </form>
     </div>
@@ -287,9 +304,16 @@
         <label for="shelter">Choose a Shelter</label>
         <select id="shelter" name="shelter" required>
           <option value="">Select Shelter</option>
+          <!-- Original Austin shelters -->
           <option value="Austin Pets Alive">Austin Pets Alive</option>
           <option value="Austin Animal Services">Austin Animal Services</option>
           <option value="Austin Humane Society">Austin Humane Society</option>
+          <!-- Additional shelters for donations -->
+          <option value="SA Humane">SA Humane (San Antonio Humane Society)</option>
+          <option value="PAWS Shelter of Central Texas">PAWS Shelter of Central Texas</option>
+          <option value="Griffith Small Animal Hospital">Griffith Small Animal Hospital</option>
+          <option value="Purrfect Match Cat Rescue">Purrfect Match Cat Rescue</option>
+          <option value="Williamson County">Williamson County Animal Shelter</option>
         </select>
         <button type="submit">Donate</button>
       </form>
@@ -314,16 +338,30 @@
     if (reportForm) {
       reportForm.addEventListener('submit', function (event) {
         event.preventDefault();
+        // Collect user inputs (currently not sent anywhere but reserved for future use)
         const type = document.getElementById('type').value || '';
         const location = document.getElementById('location').value || '';
         const details = document.getElementById('details').value || '';
-        const subject = encodeURIComponent('Stray animal report: ' + type);
-        const body = encodeURIComponent(
-          'Animal Type: ' + type + '\nLocation: ' + location + '\nDetails: ' + details
-        );
-        // open default mail client with prefilled recipients, subject, and body
-        window.location.href =
-          'mailto:' + RECIPIENTS.join(',') + '?subject=' + subject + '&body=' + body;
+        const center = document.getElementById('report-center').value || '';
+
+        // Map adoption centers to their stray report pages. These pages provide
+        // instructions or forms for reporting found animals to the appropriate
+        // organization. If Austin Humane Society does not accept strays directly,
+        // they direct the public to the city’s animal services.
+        const reportLinks = {
+          'Austin Pets Alive': 'https://www.austinpetsalive.org/resources/pet-help/found-animals',
+          'Austin Animal Services': 'https://www.austintexas.gov/found-pet',
+          'Austin Humane Society': 'https://www.austintexas.gov/found-pet'
+        };
+
+        // Ensure a center is chosen
+        if (!center || !reportLinks[center]) {
+          alert('Please select a center to report the stray animal.');
+          return;
+        }
+
+        // Open the selected center’s stray report page in a new tab
+        window.open(reportLinks[center], '_blank');
       });
     }
 
@@ -338,29 +376,25 @@
         const preferences = document.getElementById('preferences').value || '';
         const center = document.getElementById('center').value || '';
 
-        // Mapping of adoption centers to their domains
-        const searchDomains = {
-          'Austin Pets Alive': 'austinpetsalive.org',
-          'Austin Animal Services': 'austintexas.gov',
-          'Austin Humane Society': 'austinhumanesociety.org'
+        // Map each adoption center to its homepage. When a user selects a center,
+        // they will be taken directly to that center's home page rather than a search
+        // results page. This makes it simple for users to browse animals available
+        // for adoption or learn more about that organization.
+        const homePages = {
+          'Austin Pets Alive': 'https://www.austinpetsalive.org/',
+          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
+          'Austin Humane Society': 'https://austinhumanesociety.org/'
         };
 
-        // Ensure a center has been selected
-        if (!center || !searchDomains[center]) {
+        // Ensure a valid center was selected
+        if (!center || !homePages[center]) {
           alert('Please select an adoption center.');
           return;
         }
 
-        // Build a simple search query from the user's preferences. Replace newlines with spaces.
-        const queryString = preferences.replace(/\n+/g, ' ').trim();
-        const domain = searchDomains[center];
-
-        // Construct a search URL that limits results to the selected adoption center's domain.
-        // DuckDuckGo is used here because it allows simple query-based filtering; other search engines may work similarly.
-        const searchUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(queryString + ' site:' + domain);
-
-        // Open the search results in a new tab. The user can refine their search on the shelter's site from there.
-        window.open(searchUrl, '_blank');
+        // Open the selected center's homepage in a new tab. The user's
+        // preferences are currently not passed along, as requested.
+        window.open(homePages[center], '_blank');
       });
     }
 
@@ -373,9 +407,16 @@
         const shelter = document.getElementById('shelter').value || '';
         // Map each shelter to a donation page (opens in new tab)
         const donationLinks = {
+          // Original Austin organizations
           'Austin Pets Alive': 'https://www.austinpetsalive.org/donate',
           'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
-          'Austin Humane Society': 'https://austinhumanesociety.org/donate'
+          'Austin Humane Society': 'https://austinhumanesociety.org/donate',
+          // New shelters added by user request
+          'SA Humane': 'https://sahumane.org/donate',
+          'PAWS Shelter of Central Texas': 'https://pawsshelter.org/donate',
+          'Griffith Small Animal Hospital': 'https://griffithanimalhospital.com',
+          'Purrfect Match Cat Rescue': 'https://purrfectmatchcatrescue.org/get-involved',
+          'Williamson County': 'https://wilcotx.gov/animal-services'
         };
         if (donationLinks[shelter]) {
           window.open(donationLinks[shelter], '_blank');

@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PawFinder – Donate</title>
+  <title>PawFinder – Donate | PawFinder-adopt/donate.com</title>
+  <!-- Add a meta description mentioning the search phrase for easier discoverability -->
+  <meta name="description" content="Support PawFinder in rescuing stray animals. Find us online by searching PawFinder-adopt/donate.com.">
   <style>
     /* Global styles reused from the main site */
     body {
@@ -151,6 +153,10 @@
     <h2>Support Stray Animals</h2>
     <p>Your generosity helps provide food, medical care and shelter to stray dogs and cats.</p>
     <a class="cta-button" href="index.html">Return Home</a>
+    <!-- Provide instructions on how to find the app via search -->
+    <p style="margin-top:1rem;font-size:0.9rem;color:#333;">
+      Looking for our main site? Just search for <strong>PawFinder-adopt/donate.com</strong> in your search engine.
+    </p>
   </div>
   <section>
     <div class="form-container">
@@ -162,9 +168,16 @@
         <label for="shelter">Choose a Shelter</label>
         <select id="shelter" name="shelter" required>
           <option value="">Select Shelter</option>
+          <!-- Original Austin shelters -->
           <option value="Austin Pets Alive">Austin Pets Alive</option>
           <option value="Austin Animal Services">Austin Animal Services</option>
           <option value="Austin Humane Society">Austin Humane Society</option>
+          <!-- Additional shelters for donations -->
+          <option value="SA Humane">SA Humane (San Antonio Humane Society)</option>
+          <option value="PAWS Shelter of Central Texas">PAWS Shelter of Central Texas</option>
+          <option value="Griffith Small Animal Hospital">Griffith Small Animal Hospital</option>
+          <option value="Purrfect Match Cat Rescue">Purrfect Match Cat Rescue</option>
+          <option value="Williamson County">Williamson County Animal Shelter</option>
         </select>
         <button type="submit">Donate</button>
       </form>
@@ -184,9 +197,16 @@
         const shelter = document.getElementById('shelter').value || '';
         // Map each shelter to a donation page (opens in new tab)
         const donationLinks = {
+          // Original Austin organizations
           'Austin Pets Alive': 'https://www.austinpetsalive.org/donate',
           'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
-          'Austin Humane Society': 'https://austinhumanesociety.org/donate'
+          'Austin Humane Society': 'https://austinhumanesociety.org/donate',
+          // New shelters added by user request
+          'SA Humane': 'https://sahumane.org/donate',
+          'PAWS Shelter of Central Texas': 'https://pawsshelter.org/donate',
+          'Griffith Small Animal Hospital': 'https://griffithanimalhospital.com',
+          'Purrfect Match Cat Rescue': 'https://purrfectmatchcatrescue.org/get-involved',
+          'Williamson County': 'https://wilcotx.gov/animal-services'
         };
         if (donationLinks[shelter]) {
           // Open the selected shelter's donation page in a new tab
