@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawFinder – Helping Stray Animals</title>
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      /* reset to white background per user request */
+      background-color: #ffffff;
+      /* use black letters throughout */
+      color: #000;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #000;
+    }
+    a {
+      /* pink links for subtle accent */
+      color: #d6336c;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #a1123a;
+    }
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      /* soft pink header background */
+      background-color: #f9dde4;
+      color: #000;
+      border-bottom: 4px solid #f7cad0;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 1rem;
+    }
+    nav ul li a {
+      color: #000;
+      font-weight: bold;
+    }
+    /* Hero section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      /* light pink banner */
+      background-color: #fdeff4;
+      padding: 2rem;
+      border-bottom: 4px solid #f7cad0;
+    }
+    .hero img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      margin-right: 2rem;
+    }
+    .hero-text {
+      max-width: 500px;
+    }
+    .hero-text h2 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: #000;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #fda4af;
+      color: #000;
+      border-radius: 20px;
+      font-weight: bold;
+      border: 2px solid #f279a6;
+    }
+    .cta-button:hover {
+      background-color: #f77ba2;
+      color: #000;
+    }
+    /* Content sections */
+    section {
+      padding: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature {
+      background-color: #ffe8f1;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: center;
+      border: 1px solid #f7cad0;
+    }
+    .feature h3 {
+      margin-top: 0;
+      color: #000;
+    }
+    .feature p {
+      font-size: 0.9rem;
+      color: #333;
+    }
+    /* Forms */
+    .form-container {
+      background-color: #ffe8f1;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border: 1px solid #f7cad0;
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #dbaec7;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-sizing: border-box;
+      background-color: #fff;
+      color: #000;
+    }
+    .form-container button {
+      background-color: #fda4af;
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 2px solid #f279a6;
+    }
+    .form-container button:hover {
+      background-color: #f77ba2;
+      color: #000;
+    }
+    /* Footer */
+    footer {
+      background-color: #f9dde4;
+      color: #000;
+      padding: 1rem 2rem;
+      text-align: center;
+      border-top: 4px solid #f7cad0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PawFinder</h1>
+    <nav>
+      <ul>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#why">Why It Matters</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#get-involved">Get Involved</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img src="hero_pink.png" alt="Illustration of dog and cat">
+    <div class="hero-text">
+      <h2>Every pet deserves a loving home</h2>
+      <p>Join us in rescuing stray dogs and cats and connecting them with caring people and shelters.</p>
+      <a class="cta-button" href="#get-involved">Get Involved</a>
+    </div>
+  </div>
+
+  <section id="problem">
+    <h2>Problem We Solve</h2>
+    <p>
+      Too many animals are living on the streets with no food, no shelter, no medical care, and zero cuddles. Many are hungry,
+      sick and alone. Our mission is to change that.
+    </p>
+    <h3>Who Is Harmed?</h3>
+    <ul>
+      <li><strong>Animals:</strong> Stray dogs and cats suffer from hunger, illness, injuries and lack of love or protection.</li>
+      <li><strong>The Planet:</strong> Animal waste increases nitrogen and phosphorus in soil and water, harming ecosystems.</li>
+    </ul>
+  </section>
+
+  <section id="why">
+    <h2>Why This Matters</h2>
+    <p>
+      Addressing the stray animal crisis gives animals safe homes and medical care, reduces safety risks to people, and protects
+      our environment. Stray animals can scratch or bite and their waste can pollute soil and water, harming plants and
+      wildlife. By solving this problem, we improve the lives of animals, people and the planet.
+    </p>
+  </section>
+
+  <section id="features">
+    <h2>App Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Find Nearby Strays</h3>
+        <p>See dogs and cats near you that need help, using location-based search and map integration.</p>
+      </div>
+      <div class="feature">
+        <h3>Report Safely</h3>
+        <p>Easily report stray animals and include details like location and condition so rescuers can respond quickly.</p>
+      </div>
+      <div class="feature">
+        <h3>Adopt &amp; Foster</h3>
+        <p>Connect with local shelters and rescue groups to adopt or foster animals looking for a loving home.</p>
+      </div>
+      <div class="feature">
+        <h3>Donate &amp; Support</h3>
+        <p>Support our mission through donations; every bit helps provide food, medical care and shelter.</p>
+      </div>
+      <div class="feature">
+        <h3>Learn to Care</h3>
+        <p>Access educational resources about responsible pet ownership and how to help animals in need.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="get-involved">
+    <h2>Get Involved</h2>
+    <div class="form-container">
+      <h3>Report a Stray Animal</h3>
+      <form id="report-form">
+        <label for="type">Animal Type</label>
+        <input type="text" id="type" name="type" placeholder="Dog or Cat" required>
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter address or landmark" required>
+        <label for="details">Details</label>
+        <textarea id="details" name="details" placeholder="Describe the animal's condition and any other details" rows="4" required></textarea>
+        <button type="submit">Submit Report</button>
+      </form>
+    </div>
+    <div class="form-container">
+      <h3>Adopt or Foster</h3>
+      <p>
+        Interested in adopting or fostering? Visit your local shelters or get in touch with our partner rescue groups. Fill out the form below and we'll connect you with animals that need a home.
+      </p>
+      <form id="adopt-form">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Full Name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+        <label for="preferences">Preferences</label>
+        <textarea id="preferences" name="preferences" placeholder="Tell us what type of animal you're interested in" rows="3" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="form-container">
+      <h3>Donate to Help</h3>
+      <p>
+        Your donation helps provide food, medical care, and safe shelter for stray animals. Thank you for your generosity!
+      </p>
+      <form id="donate-form">
+        <label for="amount">Donation Amount (USD)</label>
+        <input type="number" id="amount" name="amount" min="1" step="1" placeholder="Enter amount" required>
+        <label for="shelter">Choose a Shelter</label>
+        <select id="shelter" name="shelter" required>
+          <option value="">Select Shelter</option>
+          <option value="Austin Pets Alive">Austin Pets Alive</option>
+          <option value="Austin Animal Services">Austin Animal Services</option>
+          <option value="Austin Humane Society">Austin Humane Society</option>
+        </select>
+        <button type="submit">Donate</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 PawFinder. All rights reserved.</p>
+  </footer>
+
+  <!-- Form handling script -->
+  <script>
+    // Email recipients for reports and adoption/foster inquiries
+    const RECIPIENTS = [
+      'info@austinpetsalive.org',
+      'animal.customerservice@austintexas.gov',
+      'animalservices@austinhumanesociety.org'
+    ];
+
+    // Report form submission handler
+    const reportForm = document.getElementById('report-form');
+    if (reportForm) {
+      reportForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const type = document.getElementById('type').value || '';
+        const location = document.getElementById('location').value || '';
+        const details = document.getElementById('details').value || '';
+        const subject = encodeURIComponent('Stray animal report: ' + type);
+        const body = encodeURIComponent(
+          'Animal Type: ' + type + '\nLocation: ' + location + '\nDetails: ' + details
+        );
+        // open default mail client with prefilled recipients, subject, and body
+        window.location.href =
+          'mailto:' + RECIPIENTS.join(',') + '?subject=' + subject + '&body=' + body;
+      });
+    }
+
+    // Adopt/Foster form submission handler
+    const adoptForm = document.getElementById('adopt-form');
+    if (adoptForm) {
+      adoptForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value || '';
+        const email = document.getElementById('email').value || '';
+        const preferences = document.getElementById('preferences').value || '';
+        const subject = encodeURIComponent('Adopt/Foster inquiry from ' + name);
+        const body = encodeURIComponent(
+          'Name: ' + name + '\nEmail: ' + email + '\nPreferences: ' + preferences
+        );
+        window.location.href =
+          'mailto:' + RECIPIENTS.join(',') + '?subject=' + subject + '&body=' + body;
+      });
+    }
+
+    // Donation form submission handler
+    const donateForm = document.getElementById('donate-form');
+    if (donateForm) {
+      donateForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const amount = document.getElementById('amount').value || '';
+        const shelter = document.getElementById('shelter').value || '';
+        // Map each shelter to a donation page (opens in new tab)
+        const donationLinks = {
+          'Austin Pets Alive': 'https://www.austinpetsalive.org/donate',
+          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
+          'Austin Humane Society': 'https://austinhumanesociety.org/donate'
+        };
+        if (donationLinks[shelter]) {
+          window.open(donationLinks[shelter], '_blank');
+        } else {
+          alert('Please select a shelter to donate to.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
