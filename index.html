@@ -265,6 +265,13 @@
         <input type="email" id="email" name="email" placeholder="Email Address" required>
         <label for="preferences">Preferences</label>
         <textarea id="preferences" name="preferences" placeholder="Tell us what type of animal you're interested in" rows="3" required></textarea>
+        <label for="center">Choose Adoption Center</label>
+        <select id="center" name="center" required>
+          <option value="">Select Center</option>
+          <option value="Austin Pets Alive">Austin Pets Alive</option>
+          <option value="Austin Animal Services">Austin Animal Services</option>
+          <option value="Austin Humane Society">Austin Humane Society</option>
+        </select>
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -324,15 +331,35 @@
     if (adoptForm) {
       adoptForm.addEventListener('submit', function (event) {
         event.preventDefault();
+        // Collect basic info (unused for redirect but could be used later)
         const name = document.getElementById('name').value || '';
         const email = document.getElementById('email').value || '';
         const preferences = document.getElementById('preferences').value || '';
-        const subject = encodeURIComponent('Adopt/Foster inquiry from ' + name);
-        const body = encodeURIComponent(
-          'Name: ' + name + '\nEmail: ' + email + '\nPreferences: ' + preferences
-        );
-        window.location.href =
-          'mailto:' + RECIPIENTS.join(',') + '?subject=' + subject + '&body=' + body;
+        const center = document.getElementById('center').value || '';
+
+        // Mapping of adoption centers to their domains
+        const searchDomains = {
+          'Austin Pets Alive': 'austinpetsalive.org',
+          'Austin Animal Services': 'austintexas.gov',
+          'Austin Humane Society': 'austinhumanesociety.org'
+        };
+
+        // Ensure a center has been selected
+        if (!center || !searchDomains[center]) {
+          alert('Please select an adoption center.');
+          return;
+        }
+
+        // Build a simple search query from the user's preferences. Replace newlines with spaces.
+        const queryString = preferences.replace(/\n+/g, ' ').trim();
+        const domain = searchDomains[center];
+
+        // Construct a search URL that limits results to the selected adoption center's domain.
+        // DuckDuckGo is used here because it allows simple query-based filtering; other search engines may work similarly.
+        const searchUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(queryString + ' site:' + domain);
+
+        // Open the search results in a new tab. The user can refine their search on the shelter's site from there.
+        window.open(searchUrl, '_blank');
       });
     }
 
