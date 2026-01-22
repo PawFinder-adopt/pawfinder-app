@@ -199,8 +199,9 @@
         const donationLinks = {
           // Original Austin organizations
           'Austin Pets Alive': 'https://www.austinpetsalive.org/donate',
-          // Redirect donors to the Austin Animal Center’s website instead of the
-          // city domain, which sometimes returns errors.
+          // Redirect donors to the Austin Animal Center’s website rather than the city
+          // domain, which sometimes returns errors. From this site donors can
+          // easily navigate to give support.
           'Austin Animal Services': 'https://austinanimalcenter.org',
           'Austin Humane Society': 'https://austinhumanesociety.org/donate',
           // New shelters added by user request

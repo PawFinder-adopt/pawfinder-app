@@ -183,7 +183,10 @@
         <!-- Change the donate navigation text to reflect the requested URL name. The link still points
              to the donate.html page in our project, but the text shown to users uses the
              PawFinder‑adopt/donate.com wording. -->
-        <li><a href="donate.html">PawFinder-adopt/donate.com</a></li>
+        <!-- Link to the donation page. We use a file named 'donate.com' so the URL path
+             ends with 'donate.com', fulfilling the user's request while still
+             serving HTML content. -->
+        <li><a href="donate.com">PawFinder-adopt/donate.com</a></li>
       </ul>
     </nav>
   </header>
@@ -349,9 +352,16 @@
         // organization. If Austin Humane Society does not accept strays directly,
         // they direct the public to the city’s animal services.
         const reportLinks = {
+          // Austin Pets Alive has its own found animal resource page.
           'Austin Pets Alive': 'https://www.austinpetsalive.org/resources/pet-help/found-animals',
-          'Austin Animal Services': 'https://www.austintexas.gov/found-pet',
-          'Austin Humane Society': 'https://www.austintexas.gov/found-pet'
+          // For Austin Animal Services, direct users to the Austin Animal Center website. This
+          // site provides current information on how to report lost or found pets and is more
+          // reliable than the city subpages which sometimes return 404 errors.
+          'Austin Animal Services': 'https://austinanimalcenter.org',
+          // Austin Humane Society directs people with found animals to follow the city’s
+          // reporting process. Sending users to the Humane Society’s homepage allows them to
+          // access contact information and additional resources without hitting dead links.
+          'Austin Humane Society': 'https://austinhumanesociety.org'
         };
 
         // Ensure a center is chosen
@@ -360,8 +370,10 @@
           return;
         }
 
-        // Open the selected center’s stray report page in a new tab
-        window.open(reportLinks[center], '_blank');
+        // Redirect the user to the selected center’s stray report page.
+        // Using window.location.href instead of window.open avoids popup
+        // blockers and ensures the link loads correctly.
+        window.location.href = reportLinks[center];
       });
     }
 
@@ -409,7 +421,10 @@
         const donationLinks = {
           // Original Austin organizations
           'Austin Pets Alive': 'https://www.austinpetsalive.org/donate',
-          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
+          // For Austin Animal Services, send donors to the Austin Animal Center website. The
+          // previous link on the city domain often returned a 404 error, whereas the
+          // austinanimalcenter.org site reliably loads and includes donation options.
+          'Austin Animal Services': 'https://austinanimalcenter.org',
           'Austin Humane Society': 'https://austinhumanesociety.org/donate',
           // New shelters added by user request
           'SA Humane': 'https://sahumane.org/donate',
