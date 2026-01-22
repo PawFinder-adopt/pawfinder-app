@@ -202,7 +202,10 @@
           // Redirect donors to the Austin Animal Center’s website rather than the city
           // domain, which sometimes returns errors. From this site donors can
           // easily navigate to give support.
-          'Austin Animal Services': 'https://austinanimalcenter.org',
+          // Send donors to the City of Austin Animal Center page. This page provides
+          // information on how to support the shelter and is more reliable than the
+          // austinanimalcenter.org domain in some browsers.
+          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
           'Austin Humane Society': 'https://austinhumanesociety.org/donate',
           // New shelters added by user request
           'SA Humane': 'https://sahumane.org/donate',

@@ -354,14 +354,16 @@
         const reportLinks = {
           // Austin Pets Alive has its own found animal resource page.
           'Austin Pets Alive': 'https://www.austinpetsalive.org/resources/pet-help/found-animals',
-          // For Austin Animal Services, direct users to the Austin Animal Center website. This
-          // site provides current information on how to report lost or found pets and is more
-          // reliable than the city subpages which sometimes return 404 errors.
-          'Austin Animal Services': 'https://austinanimalcenter.org',
-          // Austin Humane Society directs people with found animals to follow the city’s
-          // reporting process. Sending users to the Humane Society’s homepage allows them to
-          // access contact information and additional resources without hitting dead links.
-          'Austin Humane Society': 'https://austinhumanesociety.org'
+          // For Austin Animal Services, send users to the City of Austin Animal Center page on
+          // the official city website. This page provides instructions for lost and found
+          // pets and is easier to navigate than the austinanimalcenter.org domain which
+          // sometimes doesn’t load in certain browsers.
+          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
+          // Austin Humane Society directs people with found animals to contact Austin Animal
+          // Services for reporting. Their contact page explains that Austin Animal Services is
+          // the community shelter and provides the number to call for found pets【97808428022545†screenshot】.
+          // Linking to their contact page ensures users can see this information.
+          'Austin Humane Society': 'https://austinhumanesociety.org/contact-us'
         };
 
         // Ensure a center is chosen
@@ -424,7 +426,10 @@
           // For Austin Animal Services, send donors to the Austin Animal Center website. The
           // previous link on the city domain often returned a 404 error, whereas the
           // austinanimalcenter.org site reliably loads and includes donation options.
-          'Austin Animal Services': 'https://austinanimalcenter.org',
+          // Send donors to the City of Austin Animal Center page. This page is part of the
+          // official city website and is less likely to return errors than the alternate
+          // domain.
+          'Austin Animal Services': 'https://www.austintexas.gov/austin-animal-center',
           'Austin Humane Society': 'https://austinhumanesociety.org/donate',
           // New shelters added by user request
           'SA Humane': 'https://sahumane.org/donate',
