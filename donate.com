@@ -212,7 +212,8 @@
           'PAWS Shelter of Central Texas': 'https://pawsshelter.org/donate',
           'Griffith Small Animal Hospital': 'https://griffithanimalhospital.com',
           'Purrfect Match Cat Rescue': 'https://purrfectmatchcatrescue.org/get-involved',
-          'Williamson County': 'https://wilcotx.gov/animal-services'
+          // Update link for Williamson County Animal Shelter per user request
+          'Williamson County': 'https://www.wilcotx.gov/163/Animal-Shelter'
         };
         if (donationLinks[shelter]) {
           // Open the selected shelter's donation page in a new tab

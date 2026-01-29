@@ -197,6 +197,8 @@
       <h2>Every pet deserves a loving home</h2>
       <p>Join us in rescuing stray dogs and cats and connecting them with caring people and shelters.</p>
       <a class="cta-button" href="#get-involved">Get Involved</a>
+      <!-- Button to easily share the app link. When clicked, it copies the site URL to the clipboard -->
+      <button type="button" id="share-button" class="cta-button" style="margin-left:0.5rem;">Share PawFinder</button>
       <!-- Inform visitors about how to find the site via search. This text makes it clear that
            the app can be found by searching for the unique phrase provided by the user. -->
       <p style="margin-top:1rem;font-size:0.9rem;color:#333;">
@@ -245,6 +247,10 @@
       <div class="feature">
         <h3>Donate &amp; Support</h3>
         <p>Support our mission through donations; every bit helps provide food, medical care and shelter.</p>
+      </div>
+      <div class="feature">
+        <h3>Volunteer &amp; Foster</h3>
+        <p>Learn how to volunteer your time or provide a temporary home for animals in need. Fostering gives dogs and cats a safe environment while they wait for their forever families.</p>
       </div>
       <div class="feature">
         <h3>Learn to Care</h3>
@@ -319,6 +325,21 @@
           <option value="Williamson County">Williamson County Animal Shelter</option>
         </select>
         <button type="submit">Donate</button>
+      </form>
+    </div>
+
+    <!-- Feedback form allows visitors to send suggestions or ask questions directly to the PawFinder team -->
+    <div class="form-container">
+      <h3>Send Feedback</h3>
+      <p>Have ideas to improve the app or want to ask a question? Drop us a note and we'll get back to you.</p>
+      <form id="feedback-form">
+        <label for="feedback-name">Your Name</label>
+        <input type="text" id="feedback-name" name="feedback-name" placeholder="Full Name" required>
+        <label for="feedback-email">Email</label>
+        <input type="email" id="feedback-email" name="feedback-email" placeholder="Email Address" required>
+        <label for="feedback-message">Message</label>
+        <textarea id="feedback-message" name="feedback-message" placeholder="Your comments or questions" rows="4" required></textarea>
+        <button type="submit">Send</button>
       </form>
     </div>
   </section>
@@ -436,13 +457,54 @@
           'PAWS Shelter of Central Texas': 'https://pawsshelter.org/donate',
           'Griffith Small Animal Hospital': 'https://griffithanimalhospital.com',
           'Purrfect Match Cat Rescue': 'https://purrfectmatchcatrescue.org/get-involved',
-          'Williamson County': 'https://wilcotx.gov/animal-services'
+          // Update link for Williamson County Animal Shelter per user request
+          'Williamson County': 'https://www.wilcotx.gov/163/Animal-Shelter'
         };
         if (donationLinks[shelter]) {
           window.open(donationLinks[shelter], '_blank');
         } else {
           alert('Please select a shelter to donate to.');
         }
+      });
+    }
+
+    // Share button handler: copies the site URL to the clipboard. The button uses
+    // navigator.clipboard API which is supported in most modern browsers.
+    const shareButton = document.getElementById('share-button');
+    if (shareButton) {
+      shareButton.addEventListener('click', function () {
+        const siteUrl = 'https://pawfinder-adopt.github.io/pawfinder-app/';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(siteUrl)
+            .then(() => {
+              alert('PawFinder link copied to clipboard! Share it with friends to help more animals.');
+            })
+            .catch(() => {
+              // Fallback alert if copying fails
+              alert('Unable to copy the link. Please copy it manually: ' + siteUrl);
+            });
+        } else {
+          // If Clipboard API is not supported, fall back to prompt
+          window.prompt('Copy the site URL:', siteUrl);
+        }
+      });
+    }
+
+    // Feedback form submission handler: constructs a mailto link to send the
+    // visitor's message to the site owner. The message includes the user's
+    // name, email and their comments. Replace the email address below with
+    // the appropriate contact if needed.
+    const feedbackForm = document.getElementById('feedback-form');
+    if (feedbackForm) {
+      feedbackForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('feedback-name').value || '';
+        const email = document.getElementById('feedback-email').value || '';
+        const message = document.getElementById('feedback-message').value || '';
+        const subject = encodeURIComponent('PawFinder Feedback');
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+        // Use a mailto link to open the default email client with a prefilled message
+        window.location.href = 'mailto:elena.mentgen@alpha.school?subject=' + subject + '&body=' + body;
       });
     }
   </script>
