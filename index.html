@@ -503,7 +503,9 @@
         const message = document.getElementById('feedback-message').value || '';
         const subject = encodeURIComponent('PawFinder Feedback');
         const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-        // Use a mailto link to open the default email client with a prefilled message
+        // Show a confirmation message to the visitor before launching the email client
+        alert('Thank you for your feedback! A draft email has been prepared in your default email client.');
+        // Use a mailto link to open the default email client with a pre‑filled message
         window.location.href = 'mailto:elena.mentgen@alpha.school?subject=' + subject + '&body=' + body;
       });
     }
