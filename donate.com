@@ -53,6 +53,21 @@
       color: #000;
       font-weight: bold;
     }
+
+    /* Visitor counter styling */
+    #visitor-count {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+      background-color: #fdeff4;
+      color: #000;
+      border-bottom: 4px solid #f7cad0;
+      border-right: 4px solid #f7cad0;
+      border-bottom-right-radius: 8px;
+      z-index: 1000;
+    }
     /* Hero section */
     .hero {
       display: flex;
@@ -143,6 +158,8 @@
 <body>
   <header>
     <h1>PawFinder</h1>
+    <!-- Display visitor count in the top‑left corner of the donate page -->
+    <div id="visitor-count">People that used app: <span id="visit-number">0</span></div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -223,6 +240,18 @@
         }
       });
     }
+  </script>
+  <!-- Visitor counter script: track how many times this browser has opened the app -->
+  <script>
+    (function () {
+      let count = parseInt(localStorage.getItem('pawfinderVisitCount')) || 0;
+      count++;
+      localStorage.setItem('pawfinderVisitCount', count);
+      const visitEl = document.getElementById('visit-number');
+      if (visitEl) {
+        visitEl.textContent = count;
+      }
+    })();
   </script>
 </body>
 </html>
